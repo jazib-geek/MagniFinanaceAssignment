@@ -1,0 +1,43 @@
+﻿@model Data.ViewModels.StudentViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3 class="alert alert-danger">Are you sure you want to delete @Model.FirstName?</h3>
+<div>
+    <hr />
+    <dt>Student Name  </dt>
+
+    <dd>
+        @Model.FirstName @Model.LastName
+    </dd>
+
+    <dt>ShortName </dt>
+
+    <dd>
+        @Model.ShortName
+    </dd>
+
+    <dt>
+        Active Status
+    </dt>
+
+    <dd>
+        @Model.IsActive
+    </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

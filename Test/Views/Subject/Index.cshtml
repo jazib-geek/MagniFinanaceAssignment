@@ -1,0 +1,45 @@
+﻿@model List<Data.ViewModels.SubjectViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Subject List</h2>
+
+<p>
+    <a href="/Subject/Create" class="btn btn-success">Create New</a>
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>Subject Name</th>
+        <th>Short Name</th>
+        <th>Assigned to</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.SubjectFullName
+            <td>@item.ShortName</td>
+            <td>@item.TeacherName</td>
+
+            @if (item.IsActive == true)
+            {
+                <td> <i class="glyphicon glyphicon-check text-success"></i> Active</td>
+            }
+            else
+            {
+                <td> <i class="glyphicon glyphicon-exclamation-sign text-danger"></i> Deactivated</td>
+            }
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

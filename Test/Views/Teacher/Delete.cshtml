@@ -1,0 +1,63 @@
+﻿@model Data.ViewModels.TeacherViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="text-danger">Confirm delete @Model.FirstName</h2>
+
+<div>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <table class="table table-bordered">
+                <tr>
+                    <th>First Name</th>
+                    <td>@Model.FirstName</td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td>@Model.LastName</td>
+                </tr>
+
+                <tr>
+                    <th>Date Of Birth</th>
+                    <td>
+                        @{ string DOB = Model.DateOfBirth != null ? Model.DateOfBirth.Value.ToShortDateString() : string.Empty; }
+                        @DOB
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Salary</th>
+                    <td>@Model.Salary</td>
+
+                </tr>
+                <tr>
+                    <th>Active Status</th>
+                    <td>
+                        @if (Model.IsActive == true)
+                        {
+                            <span class="text-success"> <i class="glyphicon glyphicon-check"></i> Active</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger"> <i class="glyphicon glyphicon-exclamation-sign"></i> Deactivated</span>
+                        }
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        @Html.ActionLink("Back to List", "Index") |
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </div>
+}

@@ -1,0 +1,34 @@
+﻿@model List<Data.DAL.v_CourseSubject>
+@{
+    int? CourseID = ViewBag.CourseID;
+}
+
+<input type="hidden" id="AddCourseID" value="@CourseID" />
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.CourseName</td>
+        <td>@item.SubjectName</td>
+        <td class="text-center">
+            <a href="javascript:;" onclick="DeleteSubject(@item.Id)"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+        </td>
+    </tr>
+}
+
+<tr class="well">
+    <td></td>
+    <td>
+        <select id="SubjectID" class="form-control">
+            <option value="">--Add Subject--</option>
+            @foreach (var item in Data.BLL.Subject.GetSubjectList())
+            {
+                <option value="@item.Id">@item.SubjectFullName</option>
+            }
+        </select>
+    </td>
+    <td class="text-center">
+        <button type="button" onclick="AddSubject()" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i> Add Subject</button>
+    </td>
+</tr>
+

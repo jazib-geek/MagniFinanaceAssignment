@@ -1,0 +1,69 @@
+﻿@model Data.ViewModels.SubjectViewModel
+
+@{
+    ViewBag.Title = "Create";
+    var lstTeacher = ViewBag.TeacherList as List<Data.ViewModels.TeacherViewModel>;
+}
+
+@if (lstTeacher.Count == 0)
+{
+    <h5 class="alert alert-info">
+        You have not defined any Teachers. To add a Subject please first <a href="/Teacher/Create/">Add Teacher</a>, so that you can assign subject to him/her
+    </h5>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Create Subject</h4>
+        <hr />
+        @if (TempData["error"] != null)
+        {
+            <h6 class="alert alert-danger">
+                @TempData["error"]
+            </h6>
+        }
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Subject Full Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SubjectFullName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SubjectFullName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShortName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ShortName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ShortName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Assign to (Teacher)</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.TeacherID,
+                                new SelectList(ViewBag.TeacherList,
+                                               "Id", "FirstName"), "---Please select Teacher---", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TeacherID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

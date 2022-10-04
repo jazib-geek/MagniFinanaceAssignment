@@ -1,0 +1,13 @@
+﻿@model List<Data.DAL.v_StudentGrade>
+
+@foreach (var item in Model)
+{
+<tr>
+    <td>@item.StudentName</td>
+    <td>@item.SubjectName</td>
+    <td>@item.Grade</td>
+    <td class="text-center">
+        <a href="javascript:;" onclick="DeleteGrade('@item.ID')"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+    </td>
+</tr>
+}

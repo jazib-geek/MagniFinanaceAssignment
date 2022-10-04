@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1bc8a639620448989387be1d23d780f6" Name="Diagram1">
+        <EntityTypeShape EntityType="dbTestModel.tblStudent" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="dbTestModel.tblCourse" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbTestModel.tblCourseSubject" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbTestModel.tblGrade" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="dbTestModel.tblStudentSubject" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbTestModel.tblSubject" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="dbTestModel.tblTeacher" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="dbTestModel.v_CourseSubject" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="dbTestModel.v_StudentSubject" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="dbTestModel.v_Subject" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="dbTestModel.tblStudentGrade" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="dbTestModel.v_StudentGrade" Width="1.5" PointX="9.375" PointY="0.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

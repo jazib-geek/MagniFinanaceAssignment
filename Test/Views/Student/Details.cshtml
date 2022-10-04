@@ -1,0 +1,60 @@
+﻿@model Data.ViewModels.StudentViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div>
+    <h4>Student Detail</h4>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Reg No</th>
+                    <td>@Model.RegNo</td>
+
+                </tr>
+
+                <tr>
+                    <th>First Name</th>
+                    <td>@Model.FirstName</td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td>@Model.LastName</td>
+                </tr>
+
+                <tr>
+                    <th>Date Of Birth</th>
+                    <td>
+                        @{ string DOB = Model.DateOfBirth != null ? Model.DateOfBirth.Value.ToShortDateString() : string.Empty; }
+                        @DOB
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th>Active Status</th>
+                    <td>
+                        @if (Model.IsActive == true)
+                        {
+                            <span class="text-success"> <i class="glyphicon glyphicon-check"></i> Active</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger"> <i class="glyphicon glyphicon-exclamation-sign"></i> Deactivated</span>
+                        }
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

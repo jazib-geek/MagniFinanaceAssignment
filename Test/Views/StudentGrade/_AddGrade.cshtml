@@ -1,0 +1,80 @@
+﻿<div id="AddGradeModel" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Grade</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Student</label>
+                        <select id="a_StudentID" class="form-control" onchange="GetList()">
+                            <option value="">Select Student</option>
+                            @foreach (var item in Data.BLL.Student.GetStudentList())
+                            {
+                                <option value="@item.Id">@item.FirstName @item.LastName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <select id="SubjectID" class="form-control" onchange="GetList()">
+                            <option value="">Select Subject</option>
+                            @foreach (var item in Data.BLL.Subject.GetSubjectList())
+                            {
+                                <option value="@item.Id">@item.SubjectFullName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Grade</label>
+                        <select id="GradeID" class="form-control" onchange="GetList()">
+                            <option value="">Select Grade</option>
+                            @foreach (var item in Data.BLL.Grade.GetGradeList())
+                            {
+                                <option value="@item.Id">@item.GradeTitle</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <input type="button" class="btn btn-success" value="Add Grade" onclick="AddGrade()" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function AddGrade() {
+        if ($("#a_StudentID").val() != '' && $("#SubjectID").val() != '' && $("#GradeID").val() != '') {
+            $.ajax({
+                cache: false,
+                type: 'POST',
+                url: '/StudentGrade/AddGrade',
+                data: { SubjectID: $("#SubjectID").val(), StudentID: $("#a_StudentID").val(), GradeID: $("#GradeID").val() },
+                datatype: 'Json',
+                success: function (result) {
+                    GetList();
+                    $("#AddGradeModel").modal('hide');
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $("#table-content").html(xhr.responseText);
+                }
+            });
+        }
+        else {
+            alert('Please select Student, Subject and Grade');
+        }
+    }
+
+</script>

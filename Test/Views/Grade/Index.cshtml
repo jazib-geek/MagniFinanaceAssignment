@@ -1,0 +1,31 @@
+﻿@model List<Data.ViewModels.GradeViewModel>
+
+@{
+    ViewBag.Title = "Grade List";
+}
+
+<h2>Grade List</h2>
+
+<p>
+    <a href="/Grade/Create" class="btn btn-success">Create New</a>
+</p>
+<table class="table">
+    <tr>
+        <th>Grade Title</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.GradeTitle
+          
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+</table>

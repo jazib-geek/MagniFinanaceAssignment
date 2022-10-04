@@ -1,0 +1,46 @@
+﻿@model Data.ViewModels.SubjectViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3 class="alert alert-danger">Are you sure you want to delete @Model.SubjectFullName?</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <table class="table table-bordered">
+            <tr>
+                <th>Subject Name</th>
+                <td>@Model.SubjectFullName</td>
+            </tr>
+            <tr>
+                <th>Short Name</th>
+                <td>@Model.ShortName</td>
+            </tr>
+            <tr>
+                <th>Active Status</th>
+                <td>
+                    @if (Model.IsActive == true)
+                    {
+                        <span class="text-success"> <i class="glyphicon glyphicon-check"></i> Active</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger"> <i class="glyphicon glyphicon-exclamation-sign"></i> Deactivated</span>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        @Html.ActionLink("Back to List", "Index") |
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </div>
+}

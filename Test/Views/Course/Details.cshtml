@@ -1,0 +1,41 @@
+﻿@model Data.ViewModels.CourseViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Course Detail</h4>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Course Name</th>
+                    <td>@Model.CourseName</td>
+                </tr>
+                <tr>
+                    <th>Active Status</th>
+                    <td>
+                        @if (Model.IsActive == true)
+                        {
+                            <span class="text-success"> <i class="glyphicon glyphicon-check"></i> Active</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger"> <i class="glyphicon glyphicon-exclamation-sign"></i> Deactivated</span>
+                        }
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

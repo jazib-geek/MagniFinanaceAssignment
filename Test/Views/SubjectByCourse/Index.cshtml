@@ -1,0 +1,104 @@
+﻿@model List<Data.ViewModels.StudentViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Add Subjects to Course</h2>
+
+        <div class="well">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-5">
+                    <select id="CourseID" class="form-control" onchange="GetList()">
+                        <option value="">--select course--</option>
+                        @foreach (var item in Data.BLL.Course.GetCourseList())
+                        {
+                            <option value="@item.Id">@item.CourseName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered">
+            <tr>
+                <th>Course Name</th>
+                <th>Subject Name</th>
+                <th></th>
+            </tr>
+
+            <tbody id="table-content"></tbody>
+
+
+        </table>
+    </div>
+</div>
+
+<script>
+    function GetList() {
+        if ($("#CourseID").val() != '') {
+            $.ajax({
+                cache: false,
+                type: 'Get',
+                url: '/SubjectByCourse/_Index',
+                data: { CourseID: $("#CourseID").val() },
+                datatype: 'Json',
+                success: function (result) {
+                    $("#table-content").html(result);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $("#table-content").html(xhr.responseText);
+                }
+            });
+        }
+    }
+
+
+    function AddSubject() {
+        if ($("#SubjectID").val() != '') {
+            $.ajax({
+                cache: false,
+                type: 'POST',
+                url: '/SubjectByCourse/AddSubject',
+                data: { SubjectID: $("#SubjectID").val(), CourseID: $("#AddCourseID").val() },
+                datatype: 'Json',
+                success: function (result) {
+                    GetList();
+                    if (result.msg == 'error') {
+                        alert(result.desc);
+                        $("#SubjectID").val(result.SubjectID);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $("#table-content").html(xhr.responseText);
+                }
+            });
+        }
+        else {
+            alert('Please select Subject');
+        }
+    }
+
+    function DeleteSubject(ID) {
+        var conf = confirm('Confirm delete thi subject for this course?');
+        if (conf == true) {
+            $.ajax({
+                cache: false,
+                type: 'POST',
+                url: '/SubjectByCourse/DeleteSubject',
+                data: { ID : ID },
+                datatype: 'Json',
+                success: function (result) {
+                    GetList();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $("#table-content").html(xhr.responseText);
+                }
+            });
+        }
+    }
+
+</script>
