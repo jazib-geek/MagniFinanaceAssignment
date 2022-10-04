@@ -7,12 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{A6E37CC3-9A70-43A1-911C-6BAEA8EA3940}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{E66AEE63-3522-448B-9269-1A49CAD1A9B7}"
-	ProjectSection(SolutionItems) = preProject
-		..\Setup.bat = ..\Setup.bat
-		..\Setup.md.txt = ..\Setup.md.txt
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
